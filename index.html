@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shengfu Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0e0e0e;
+      --surface:  #161616;
+      --border:   #262626;
+      --muted:    #555;
+      --body:     #b0b0b0;
+      --heading:  #efefef;
+      --accent:   #c8f060;
+      --accent2:  #60c8f0;
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+      --font-mono:  'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp .6s ease both;
+    }
+
+    .name {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      color: var(--heading);
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+
+    .name span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .tagline {
+      margin-top: .9rem;
+      font-size: .95rem;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: .01em;
+    }
+
+    .tagline strong {
+      color: var(--body);
+      font-weight: 500;
+    }
+
+    /* ── Nav links ── */
+    .social {
+      display: flex;
+      gap: 1.4rem;
+      margin-top: 1.6rem;
+      flex-wrap: wrap;
+    }
+
+    .social a {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: color .2s, border-color .2s;
+    }
+
+    .social a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 3.5rem 0 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Post list ── */
+    .posts { display: flex; flex-direction: column; gap: 0; }
+
+    .post {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 1.6rem;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+      animation: fadeUp .5s ease both;
+    }
+
+    .post:hover .post-title { color: var(--accent); }
+    .post:hover .post-arrow { opacity: 1; transform: translateX(3px); }
+
+    .post-date {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--muted);
+      padding-top: .3rem;
+      line-height: 1.4;
+      letter-spacing: .02em;
+    }
+
+    .post-body { display: flex; flex-direction: column; gap: .3rem; }
+
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--heading);
+      line-height: 1.3;
+      transition: color .2s;
+    }
+
+    .post-summary {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .post-tags {
+      display: flex;
+      gap: .5rem;
+      margin-top: .4rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .15rem .5rem;
+      border-radius: 2px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .post-arrow {
+      font-size: .9rem;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity .2s, transform .2s;
+      align-self: center;
+      margin-left: auto;
+    }
+
+    /* ── About blurb ── */
+    .about {
+      margin: 3.5rem 0;
+      padding: 1.8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      animation: fadeUp .7s ease both;
+    }
+
+    .about p {
+      font-size: .92rem;
+      line-height: 1.8;
+      color: var(--body);
+    }
+
+    .about p + p { margin-top: .8rem; }
+
+    .about a {
+      color: var(--accent2);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+
+    .about a:hover { border-color: var(--accent2); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2.5rem 0 4rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: .5rem;
+      vertical-align: middle;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .post:nth-child(1) { animation-delay: .05s; }
+    .post:nth-child(2) { animation-delay: .10s; }
+    .post:nth-child(3) { animation-delay: .15s; }
+    .post:nth-child(4) { animation-delay: .20s; }
+    .post:nth-child(5) { animation-delay: .25s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 500px) {
+      .post { grid-template-columns: 1fr; gap: .4rem; }
+      .post-date { font-size: .68rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Header -->
+  <header>
+    <h1 class="name">Shengfu <span>Zhang</span></h1>
+    <p class="tagline">
+      Engineer exploring how <strong>AI is reshaping the way we build software</strong>.<br>
+      Sharing what I'm learning along the way.
+    </p>
+    <nav class="social">
+      <a href="#" target="_blank">Substack</a>
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">X / Twitter</a>
+      <a href="#" target="_blank">小红书</a>
+      <a href="https://github.com/shengfuzhang" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <!-- Posts -->
+  <p class="section-label">Writing</p>
+
+  <div class="posts">
+
+    <!-- Post 1 — add new posts at the top -->
+    <a class="post" href="posts/2026-03-ai-velocity/blog.html">
+      <div class="post-date">Mar<br>2026</div>
+      <div class="post-body">
+        <div class="post-title">Velocity Without Drift: Balancing AI Productivity and Engineering Quality</div>
+        <div class="post-summary">We sped up generation. We didn't speed up delivery. Why code review is the real bottleneck — and how to fix the system, not the symptom.</div>
+        <div class="post-tags">
+          <span class="tag">AI</span>
+          <span class="tag">Engineering</span>
+          <span class="tag">Productivity</span>
+        </div>
+      </div>
+      <div class="post-arrow">→</div>
+    </a>
+
+    <!-- Template for next post — duplicate and fill in
+    <a class="post" href="posts/YYYY-MM-slug/blog.html">
+      <div class="post-date">Mon<br>YYYY</div>
+      <div class="post-body">
+        <div class="post-title">Post Title Here</div>
+        <div class="post-summary">One sentence summary of the post.</div>
+        <div class="post-tags">
+          <span class="tag">Tag</span>
+        </div>
+      </div>
+      <div class="post-arrow">→</div>
+    </a>
+    -->
+
+  </div>
+
+  <!-- About -->
+  <p class="section-label">About</p>
+
+  <div class="about">
+    <p>
+      I'm Shengfu — an engineer thinking about how AI is changing the craft of building software.
+      Not just the tools, but the systems, the workflows, and the mental models we need to update.
+    </p>
+    <p>
+      I write about what I'm learning in the field: agent orchestration, engineering quality at AI speed,
+      and what it means to design systems that are both fast and trustworthy.
+    </p>
+    <p>
+      Posts go out on <a href="#">Substack</a>. Code and artifacts live here on GitHub.
+      Find me on <a href="#">LinkedIn</a> or <a href="#">X</a> for shorter takes.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <span><span class="footer-dot"></span>Shengfu Zhang — 2026</span>
+    <span>Built with HTML. Hosted on GitHub Pages.</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
