@@ -1,0 +1,6 @@
+{
+  "title": "Velocity Without Drift — Part 2: Building the System",
+  "date": "2026-03-29T01:00:00Z",
+  "tags": ["AI Agents", "Engineering", "Code Quality"],
+  "summary": "Part 2 turns the dual harness thesis into an operating model: deterministic enforcement, steering loops, harness regression tests, and confidence signals for earned autonomy."
+}

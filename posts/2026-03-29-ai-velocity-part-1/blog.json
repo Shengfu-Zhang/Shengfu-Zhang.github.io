@@ -1,0 +1,6 @@
+{
+  "title": "Velocity Without Drift — Part 1: The Dual Harness Problem",
+  "date": "2026-03-29T00:00:00Z",
+  "tags": ["AI Agents", "Engineering", "Code Quality"],
+  "summary": "AI made code generation fast, but it did not make validation faster. This post explains why enterprise delivery still bottlenecks on trust and why teams need a quality harness alongside the generation harness."
+}

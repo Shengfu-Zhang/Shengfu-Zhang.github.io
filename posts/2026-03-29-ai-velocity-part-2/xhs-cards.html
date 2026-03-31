@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XHS Cards - AI Velocity Part 2</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Noto+Serif+SC:wght@500;700&display=swap');
+
+    :root {
+      --bg: #f4f2ee;
+      --paper: rgba(255, 255, 255, 0.84);
+      --ink: #17362f;
+      --muted: #53645f;
+      --accent: #1c6454;
+      --accent-soft: rgba(28, 100, 84, 0.12);
+      --line: rgba(28, 100, 84, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 1px 1px, rgba(28, 100, 84, 0.15) 1px, transparent 0) 0 0 / 26px 26px,
+        linear-gradient(180deg, #fbfaf7 0%, var(--bg) 100%);
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+    }
+
+    .card {
+      width: 1080px;
+      height: 1440px;
+      padding: 88px 84px 78px;
+      overflow: hidden;
+    }
+
+    .frame {
+      height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at top right, rgba(28, 100, 84, 0.14), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.84));
+      box-shadow: 0 24px 80px rgba(17, 42, 35, 0.08);
+      padding: 54px 56px 46px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .label {
+      font-family: "DM Mono", monospace;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1, h2 {
+      margin: 0;
+      font-family: "Noto Serif SC", serif;
+      font-weight: 700;
+      line-height: 1.12;
+    }
+
+    h1 { font-size: 82px; }
+    h2 { font-size: 64px; }
+
+    p {
+      margin: 0;
+      font-size: 38px;
+      line-height: 1.42;
+      color: var(--ink);
+    }
+
+    .lead {
+      font-size: 44px;
+      line-height: 1.34;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 34px;
+      display: grid;
+      gap: 18px;
+      font-size: 36px;
+      line-height: 1.38;
+    }
+
+    blockquote {
+      margin: 0;
+      padding: 32px 36px;
+      border-left: 8px solid var(--accent);
+      background: rgba(28, 100, 84, 0.08);
+      border-radius: 24px;
+      font-family: "Noto Serif SC", serif;
+      font-size: 48px;
+      line-height: 1.32;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .tile {
+      padding: 24px 26px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+    }
+
+    .tile strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 24px;
+      font-family: "DM Mono", monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .tile span {
+      display: block;
+      font-size: 33px;
+      line-height: 1.32;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      font-family: "DM Mono", monospace;
+      font-size: 24px;
+      color: var(--accent);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "DM Mono", monospace;
+      font-size: 24px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <section class="card">
+    <div class="frame">
+      <div>
+        <div class="label">Velocity Without Drift / 第 2 篇</div>
+        <h1>怎么让 AI 提速，但不让质量漂移？</h1>
+      </div>
+      <p class="lead">关键不是更努力评审，而是把评审里反复出现的问题，逐步变成系统行为。</p>
+      <div class="pill">规则 · 流程 · 信号</div>
+      <div class="footer">
+        <span>shengfu-zhang.github.io</span>
+        <span>01 / 07</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="frame">
+      <div>
+        <div class="label">规则层</div>
+        <h2>同一个问题出现两次，就该考虑写成规则</h2>
+      </div>
+      <ul>
+        <li>把重复评审意见升级成 lint 或构建校验</li>
+        <li>边界问题不要靠评审人记忆兜底</li>
+        <li>报错信息也要写到 agent 看得懂</li>
+      </ul>
+      <div class="footer">
+        <span>shengfu-zhang.github.io</span>
+        <span>02 / 07</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="frame">
+      <div>
+        <div class="label">流程层</div>
+        <h2>还不能写成 lint 的，先放进流程里</h2>
+      </div>
+      <div class="grid">
+        <div class="tile">
+          <strong>适合先放进流程的</strong>
+          <span>任务拆解、先写测试、边界范围、完成标准</span>
+        </div>
+        <div class="tile">
+          <strong>最终目标</strong>
+          <span>高频重复的问题，最后还是要升级成可执行规则</span>
+        </div>
+      </div>
+      <div class="footer">
+        <span>shengfu-zhang.github.io</span>
+        <span>03 / 07</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="frame">
+      <div>
+        <div class="label">系统测试</div>
+        <h2>不只测业务代码，也要测那套生成代码的系统</h2>
+      </div>
+      <ul>
+        <li>lint 规则还会不会准时触发？</li>
+        <li>流程改完后，常见任务有没有退化？</li>
+        <li>AI 看见报错后，还能不能自己修回来？</li>
+      </ul>
+      <div class="footer">
+        <span>shengfu-zhang.github.io</span>
+        <span>04 / 07</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="frame">
+      <div>
+        <div class="label">信号</div>
+        <h2>要不要减少评审深度，要看信号</h2>
+      </div>
+      <div class="grid">
+        <div class="tile">
+          <strong>值得盯的信号</strong>
+          <span>返工轮次、自我修正次数、规则拦截率、上线后问题</span>
+        </div>
+        <div class="tile">
+          <strong>这些信号在回答</strong>
+          <span>系统是在收紧，还是只是在更快地产生不确定性</span>
+        </div>
+      </div>
+      <div class="footer">
+        <span>shengfu-zhang.github.io</span>
+        <span>05 / 07</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="frame">
+      <div>
+        <div class="label">一句话</div>
+        <h2>信任不是默认值，要靠信号一点点挣回来</h2>
+      </div>
+      <blockquote>不是模型够快就天然值得信任，能不能少看代码，最终还是要看系统给出的信号。</blockquote>
+      <div class="footer">
+        <span>shengfu-zhang.github.io</span>
+        <span>06 / 07</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="frame">
+      <div>
+        <div class="label">行动</div>
+        <h2>下一步别再只优化 prompt 了</h2>
+      </div>
+      <ul>
+        <li>先挑一个高频评审问题，把它写成规则</li>
+        <li>再挑一条流程要求，把它沉淀成团队 SOP</li>
+        <li>最后把返工轮次和自我修正次数监控起来</li>
+      </ul>
+      <div class="pill">从一个 loop 开始就够了</div>
+      <div class="footer">
+        <span>shengfu-zhang.github.io</span>
+        <span>07 / 07</span>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
